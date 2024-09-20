@@ -1,16 +1,15 @@
-//Imports GUI Foundation
+package src;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.KeyboardFocusManager;
-
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
 
 public class GUI {
 
     //Global variable for the frame (window) of for application for the entire class to use
-    private static JFrame f;
+    protected static JFrame f;
+    protected static JTextArea hoursText;
 
     //CreateWindow() creates the frame (window) for the application
     public static void CreateWindow(){
@@ -58,12 +57,14 @@ public class GUI {
         f.add(intervalLabel);
 
         //Adds boxes for text to be inserted ONLY number values (0,1,2,3,4,5,6,7,8,9)
-        JTextArea hoursText = new JTextArea();
+        hoursText = new JTextArea();
         hoursText.setBounds(10,30,50,18);
         hoursText.setFont(new Font("Georgia", Font.PLAIN, 13));
         hoursText.setBorder(BorderFactory.createLineBorder(Color.black));
         hoursText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         hoursText.setText("0");
+        //Adds the listener for the specified text box
+        hoursText.addKeyListener(IntervalKeyListener.hoursKeyListener);
         f.add(hoursText);
 
         JTextArea minsText = new JTextArea();
@@ -111,4 +112,5 @@ public class GUI {
         msecsLabel.setFont(new Font("Georgia", Font.PLAIN, 10));
         f.add(msecsLabel);
     }
+
 }
